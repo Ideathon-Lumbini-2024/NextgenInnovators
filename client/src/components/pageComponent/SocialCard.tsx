@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { TSocialCard } from "@/types/SocialCard";
+import ImageGrid from "./ImageGrid";
 
 const SocialCard = ({
   userName,
@@ -74,22 +75,7 @@ const SocialCard = ({
       <CardContent className="p-4 pt-0">
         <p className="text-gray-700">{description}</p>
         <div>
-          {images.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt="..."
-              className="rounded-lg w-full mt-4"
-            />
-          ))}
-        </div>
-
-        <div className="mt-4">
-          <img
-            src="/api/placeholder/600/400"
-            alt="Beach sunset"
-            className="rounded-lg w-full"
-          />
+          <ImageGrid images={images} />
         </div>
       </CardContent>
 
