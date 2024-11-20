@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 interface LoginFormData {
   email: string;
@@ -10,29 +10,30 @@ interface LoginFormData {
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginFormData>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     try {
       // TODO: Implement actual login logic here
-      console.log('Login attempt with:', formData);
+      console.log("Login attempt with:", formData);
+      navigate("/");
       // navigate('/dashboard');
     } catch (err) {
-      setError('Invalid credentials. Please try again.');
+      setError("Invalid credentials. Please try again.");
     }
   };
 
@@ -86,7 +87,7 @@ const Login: React.FC = () => {
         </form>
         <div className="login-footer">
           <p>
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <a href="/register" className="register-link">
               Create Account
             </a>
