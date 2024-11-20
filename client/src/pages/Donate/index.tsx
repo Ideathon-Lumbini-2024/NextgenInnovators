@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import qrcode from "@/assets/qr.webp";
 
 interface FormData {
   // Personal Info
@@ -15,17 +16,21 @@ interface FormData {
   email: string;
   phone: string;
   address: string;
+  amount: string;
+  screenshot: string;
 }
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    firstName: "adarsh",
+    lastName: "kunwar",
     dateOfBirth: "",
-    email: "",
-    phone: "",
-    address: "",
+    email: "adarshkunwar@gmail.com",
+    phone: "9804404404",
+    address: "Butwal - 10, Kalikanagar",
+    amount: "5000",
+    screenshot: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,11 +56,11 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
+    <div className="w-full max-w-2xl mx-auto p-4 mt-24">
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between mb-2">
-          {["Personal Info", "Contact Details", "Review"].map(
+          {["Contact Details", "Payment Details", "Review"].map(
             (label, index) => (
               <div key={label} className="flex flex-col items-center flex-1">
                 <div
@@ -64,7 +69,7 @@ const MultiStepForm = () => {
                     step > index + 1 &&
                       "bg-blue-500 border-blue-500 text-white",
                     step === index + 1 && "border-blue-500 text-blue-500",
-                    step < index + 1 && "border-gray-300 text-gray-300",
+                    step < index + 1 && "border-gray-300 text-gray-300"
                   )}
                 >
                   {index + 1}
@@ -72,13 +77,13 @@ const MultiStepForm = () => {
                 <span
                   className={cn(
                     "text-sm mt-2",
-                    step >= index + 1 ? "text-blue-500" : "text-gray-300",
+                    step >= index + 1 ? "text-blue-500" : "text-gray-300"
                   )}
                 >
                   {label}
                 </span>
               </div>
-            ),
+            )
           )}
         </div>
         <div className="w-full bg-gray-200 h-2 rounded-full">
@@ -92,8 +97,8 @@ const MultiStepForm = () => {
       <Card>
         <CardHeader>
           <CardTitle>
-            {step === 1 && "Personal Information"}
-            {step === 2 && "Contact Details"}
+            {step === 1 && "Contact Details"}
+            {step === 2 && "Payment Details"}
             {step === 3 && "Review Your Information"}
           </CardTitle>
         </CardHeader>
@@ -133,12 +138,6 @@ const MultiStepForm = () => {
                     required
                   />
                 </div>
-              </div>
-            )}
-
-            {/* Step 2: Contact Details */}
-            {step === 2 && (
-              <div className="space-y-4">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -169,6 +168,41 @@ const MultiStepForm = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Step 2: Contact Details */}
+            {step === 2 && (
+              <div className="space-y-4">
+                <div className="w-full flex justify-center">
+                  <img src={qrcode} alt="qr code" />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="amount">Amount</Label>
+                  <div className="flex justify-center items-center">
+                    Rs.
+                    <Input
+                      id="amount"
+                      name="amount"
+                      type="amount"
+                      value={formData.amount}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="screenshot">Screenshot</Label>
+
+                  <input
+                    type="file"
+                    id="screenshot"
+                    name="screenshot"
+                    accept="image/*"
+                    className="border rounded px-3 py-2"
                   />
                 </div>
               </div>
