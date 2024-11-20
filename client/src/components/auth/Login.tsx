@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 interface LoginFormData {
-  email: string;
+  identifier: string; // Can be either email or phone
   password: string;
 }
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginFormData>({
-    email: "",
+    identifier: "",
     password: "",
   });
   const [error, setError] = useState<string>("");
@@ -47,17 +47,19 @@ const Login: React.FC = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="identifier">Email or Phone Number</label>
             <div className="input-wrapper">
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                id="identifier"
+                name="identifier"
+                value={formData.identifier}
                 onChange={handleChange}
                 required
-                placeholder="Enter your email"
+                placeholder="Enter your email or phone number"
                 className="form-input"
+                pattern="^(?:\w+@\w+\.\w+|[0-9]{10})$"
+                title="Please enter a valid email or 10-digit phone number"
               />
             </div>
           </div>
