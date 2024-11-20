@@ -1,4 +1,5 @@
 import flood from "@/assets/Nepal-feat.jpg";
+import { Link } from "react-router-dom";
 
 const FundraiserCardNepal = () => {
   return (
@@ -47,9 +48,11 @@ const FundraiserCardNepal = () => {
           <button className="px-6 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600">
             Share
           </button>
-          <button className="px-6 py-2 bg-orange-500 text-white rounded-lg shadow hover:bg-orange-600">
-            Donate now
-          </button>
+          <Link to={"/donate"}>
+            <button className="px-6 py-2 bg-orange-500 text-white rounded-lg shadow hover:bg-orange-600">
+              Donate now
+            </button>
+          </Link>
         </div>
       </div>
       {/* Donors List */}
