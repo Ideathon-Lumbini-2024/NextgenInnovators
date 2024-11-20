@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { TSocialCard } from "@/types/SocialCard";
 import ImageGrid from "./ImageGrid";
+import { Link } from "react-router-dom";
 
 const SocialCard = ({
   userName,
@@ -73,10 +74,12 @@ const SocialCard = ({
 
       {/* Content */}
       <CardContent className="p-4 pt-0">
-        <p className="text-gray-700">{description}</p>
-        <div>
-          <ImageGrid images={images} />
-        </div>
+        <Link to={"/singlepage"}>
+          <p className="text-gray-700">{description}</p>
+          <div>
+            <ImageGrid images={images} />
+          </div>
+        </Link>
       </CardContent>
 
       {/* Engagement Stats */}
