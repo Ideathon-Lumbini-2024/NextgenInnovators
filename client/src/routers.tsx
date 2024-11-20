@@ -4,6 +4,7 @@ import Donate from "./pages/Donate";
 import Home from "./pages/home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import SupporterForm from "./components/supporter/SupporterForm";
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
         <Route path="/donate" element={<Donate />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/supporter" element={<SupporterForm />} />
       </Routes>
     </>
   );
