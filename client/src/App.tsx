@@ -1,9 +1,9 @@
-import Home from "./pages/home";
+import Routers from "./routers";
 
 function App() {
   return (
     <>
-      <Home />
+      <Routers />
     </>
   );
 }
